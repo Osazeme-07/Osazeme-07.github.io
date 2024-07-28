@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Global Research Hub UK</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-bar">
+            <div class="logo">
+                THE GLOBAL RESEARCH HUB UK
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+            <div class="bar"></div>
+        </div>
+        <nav class="nav-menu" id="nav-menu">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+        <div class="contact-container">
+            <div class="contact-info">
+                <h1>Contact Us</h1>
+                <p>support@theglobalresearchhubuk.com</p>
+            </div>
+            <form id="contact-form" class="contact-form" novalidate>
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="text" id="first-name" name="first-name" placeholder="First Name *" required>
+                        <span class="error-message" id="error-first-name"></span>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="last-name" name="last-name" placeholder="Last Name *" required>
+                        <span class="error-message" id="error-last-name"></span>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <input type="email" id="email" name="email" placeholder="Email *" required>
+                    <span class="error-message" id="error-email"></span>
+                </div>
+                <div class="input-container">
+                    <textarea id="message" name="message" placeholder="Message"></textarea>
+                    <span class="error-message" id="error-message"></span>
+                </div>
+                <div class="input-container">
+                    <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
+                    <label for="privacy-policy">I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a></label>
+                    <span class="error-message" id="error-privacy-policy"></span>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    
+        <script src="script.js"></script>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>The Global Research Hub UK®</h3>
+                    <p></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Medical Sites</h3>
+                    <ul>
+                        <li><a href="#">OptinMonster</a></li>
+                        <li><a href="#">MonsterInsights</a></li>
+                        <li><a href="#">WPForms</a></li>
+                        <li><a href="#">List25</a></li>
+                        <li><a href="#">Awesome Motive</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Sites</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+
+    </body>
+    </html>
