@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.json());
@@ -17,14 +17,14 @@ app.post('/submit-form', (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'your-email@gmail.com', // replace with your email
-            pass: 'your-email-password' // replace with your email password
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
         }
     });
 
     const mailOptions = {
         from: email,
-        to: 'your-email@gmail.com', // replace with your email
+        to: process.env.EMAIL_USER,
         subject: 'New Contact Form Submission',
         text: `You have a new contact form submission:\n\n
             First Name: ${firstName}\n
@@ -35,8 +35,8 @@ app.post('/submit-form', (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            console.log(error);
-            return res.json({ success: false });
+            console.error('Error occurred:', error.message);
+            return res.json({ success: false, error: error.message });
         }
         console.log('Email sent: ' + info.response);
         res.json({ success: true });
