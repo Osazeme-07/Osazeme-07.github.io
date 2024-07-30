@@ -6,18 +6,18 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     const firstName = document.getElementById('first-name');
     const lastName = document.getElementById('last-name');
     const email = document.getElementById('email');
-    const message = document.getElementById('message');
+    const disclaimer = document.getElementById('privacy-policy');
 
     const errorFirstName = document.getElementById('error-first-name');
     const errorLastName = document.getElementById('error-last-name');
     const errorEmail = document.getElementById('error-email');
-    const errorMessage = document.getElementById('error-message');
+    const errordisclaimer = document.getElementById('error-privacy-policy');
     
     // Clear previous error messages
     errorFirstName.textContent = '';
     errorLastName.textContent = '';
     errorEmail.textContent = '';
-    errorMessage.textContent = '';
+    errordisclaimer.textContent= '';
     
     // Validate First Name
     if (firstName.value.trim() === '') {
@@ -37,12 +37,12 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         isValid = false;
         errorEmail.textContent = 'Invalid Email address';
     }
-    
-    // Validate Message
-    if (message.value.trim() === '') {
+
+    if (!disclaimer.checked) {
         isValid = false;
-        errorMessage.textContent = 'Message is required';
+        errordisclaimer.textContent = 'You must agree to the policies in the disclaimer';
     }
+    
     
     if (isValid) {
         alert('Form submitted successfully!');

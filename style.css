@@ -104,6 +104,7 @@ nav ul li a {
 .ai-image {
     width: 100%;
     max-width: 600px;
+    height: auto;
     background-image: url('imaage.png');
     background-size: cover;
     background-position: center;
@@ -151,10 +152,7 @@ nav ul li a {
     .content p {
         font-size: 18px;
     }
-    .ai-image {
-        width: 50%;
-        height: 20vh;
-    }
+
 }
 
 footer {
@@ -327,6 +325,24 @@ footer {
     resize: none;
 }
 
+.input-container2{
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.privacy{
+    font-size: 26px;
+    font-weight: bold;
+    padding: 20px;
+    padding-left: 50px;
+}
+
+.para{
+    padding: 20px;
+    padding-left: 70px;
+    font-size: larger;
+}
 .error-message {
     color: red;
     font-size: 12px;
