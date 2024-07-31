@@ -5,15 +5,15 @@ const nodemailer = require('nodemailer');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.static('public'));  // Serve static files from the 'public' directory
+app.use(express.static('docs'));  // Serve static files from the 'public' directory
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/contact.html');  // Adjust this if needed
+    res.sendFile(__dirname + '/docs/contact.html');  // Adjust this if needed
 });
 
 // Middleware
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static('docs'));
 
 // Route to handle form submission
 app.post('/submit-form', (req, res) => {
