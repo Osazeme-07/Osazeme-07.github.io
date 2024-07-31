@@ -8,7 +8,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-
+/* Navbar Styling */
 .nav-bar {
     display: flex;
     justify-content: space-between;
@@ -16,10 +16,11 @@ body {
     background-color: #000000;
     padding: 30px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%; /* Ensure it spans the full width */
     flex-wrap: wrap;
 }
 
-.logo  {
+.logo {
     color: #ffffff;
     font-weight: bold;
     font-size: larger;
@@ -41,18 +42,18 @@ nav ul li a {
 
 @media (max-width: 768px) {
     .nav-bar {
-        align-items: flex-start;
+        align-items: center;
+        width: 100%; /* Ensure it spans the full width */
     }
     
     nav ul {
         width: 100%;
+        justify-content: center;
     }
-
-
 }
 
-
-.ai-section {
+/* Section Styling */
+.ai-section, .ai-section2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,32 +61,9 @@ nav ul li a {
     text-align: center;
     padding: 10px;
     background-color: #ffffff;
-    height: 90vh;
+    height: auto;
+    width: 100%;
 }
-.ai-section2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: right;
-    padding: 10px;
-    background-color: #ffffff;
-    height: 60vh;
-}
-.content {
-    max-width: 90%;
-    margin-bottom: 20px;
-}
-
-.content h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-.content h5 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-
 .explore-button {
     padding: 10px 45px;
     background-color: #000000;
@@ -101,49 +79,68 @@ nav ul li a {
     color: #fff;
 }
 
-.ai-image {
+.content {
+    max-width: 90%;
+    margin-bottom: 20px;
+}
+
+.content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.content h5 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Responsive Image Containers */
+.ai-image, .ai-image2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 600px;
     height: auto;
-    background-image: url('imaage.png');
-    background-size: cover;
-    background-position: center;
 }
 
-.ai-image2 {
-    width: 100%;
-    max-width: 535px;
-    margin-right: 30px;
-    background-image: url('research_2-removebg-preview.png');
-    background-size: contain;
-    background-position: center;
+.ai-image img, .ai-image2 img {
+    max-width: 100%;
+    height: auto;
 }
 
+.ai-section{
+    margin-top: 200px;
+    margin-bottom: 30px;
+}
+.ai-image2{
+    order: 2;
+}
+.ai-section2{
+    order: 1;
+}
+
+/* For Larger Screens */
 @media (min-width: 768px) {
-    .ai-section {
+    .ai-section, .ai-section2 {
         flex-direction: row;
         text-align: left;
+        padding: 20px;
     }
-    
+
     .content {
         max-width: 50%;
         margin-bottom: 0;
     }
-    
-    .ai-image {
+
+    .ai-image, .ai-image2 {
         width: 50%;
-        height: 50vh;
     }
-    .ai-section2 {
-        flex-direction: row;
-        text-align: left;
-    }
-    .ai-image2 {
-        width: 50%;
-        height: 50vh;
+    .ai-section{
+        margin-top: 50px;
     }
 }
 
+/* For Extra Large Screens */
 @media (min-width: 1200px) {
     .content h1 {
         font-size: 48px;
@@ -152,13 +149,14 @@ nav ul li a {
     .content p {
         font-size: 18px;
     }
-
 }
 
+/* Footer Styling */
 footer {
-    background-color:black;
+    background-color: black;
     color: #f1f1f1;
     padding: 20px 0;
+    width: 100%; /* Full width */
 }
 
 .footer-container {
@@ -204,22 +202,15 @@ footer {
     text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .footer-container {
-        justify-content: space-between;
-    }
-}
-
 @media (max-width: 992px) {
     .footer-container {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        width: auto;
     }
     
     .footer-section {
         margin: 10px 0;
-        text-align: left;
     }
 }
 
@@ -244,6 +235,7 @@ footer {
 
     .footer-container {
         padding: 0 10px;
+        width: auto;
     }
 
     .footer-section {
@@ -264,18 +256,18 @@ footer {
     }
 }
 
-
-
+/* Contact Form Styling */
 .contact-container {
     display: flex;
-    margin-left: 100px;
-    margin-top: 30px;
+    margin: 30px auto;
     padding: 40px;
     border-radius: 8px;
     flex-wrap: wrap;
     width: 100%;
     max-width: 1200px;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
 }
 
 .contact-info {
@@ -288,6 +280,7 @@ footer {
 .contact-form {
     flex: 2;
     min-width: 250px;
+    width: 100%;
 }
 
 .contact-info h1 {
@@ -325,24 +318,25 @@ footer {
     resize: none;
 }
 
-.input-container2{
+.input-container2 {
     width: 100%;
     margin-bottom: 20px;
     position: relative;
 }
 
-.privacy{
+.privacy {
     font-size: 26px;
     font-weight: bold;
     padding: 20px;
     padding-left: 50px;
 }
 
-.para{
+.para {
     padding: 20px;
     padding-left: 70px;
     font-size: larger;
 }
+
 .error-message {
     color: red;
     font-size: 12px;
@@ -368,12 +362,13 @@ button:hover {
 @media (max-width: 768px) {
     .contact-container {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
-    
+
     .contact-info {
         padding-right: 0;
         margin-bottom: 20px;
+        text-align: center;
     }
     
     .contact-form {
