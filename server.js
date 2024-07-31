@@ -5,6 +5,12 @@ const nodemailer = require('nodemailer');
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(express.static('public'));  // Serve static files from the 'public' directory
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/contact.html');  // Adjust this if needed
+});
+
 // Middleware
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -44,6 +50,6 @@ app.post('/submit-form', (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server is running on http://0.0.0.0:${port}`);
 });
