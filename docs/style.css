@@ -51,6 +51,18 @@ nav ul li a {
         justify-content: center;
     }
 }
+@media (max-width: 500px){
+    .nav-bar {
+        align-items: center;
+        width: 100%; /* Ensure it spans the full width */
+    }
+    
+    nav ul {
+        width: 100%;
+        justify-content: center;
+        padding-left: 40px;
+    }
+}
 
 /* Section Styling */
 .ai-section, .ai-section2 {
@@ -335,6 +347,7 @@ footer {
     padding: 20px;
     padding-left: 70px;
     font-size: larger;
+    width: 100%;
 }
 
 .error-message {
@@ -374,4 +387,5 @@ button:hover {
     .contact-form {
         width: 100%;
     }
+    
 }
