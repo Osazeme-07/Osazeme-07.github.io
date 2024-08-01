@@ -35,10 +35,16 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: #ffffff;
+    color:white;
     font-size: 16px;
     font-weight: bold;
+    background-color: grey;
+    border-top:2px solid #81544471;
+    border-right:2px solid #3d100000;
+    border-bottom:2px solid #3d100000;
+    border-left:2px solid #8a5b4a9a;
 }
+
 
 @media (max-width: 768px) {
     .nav-bar {
@@ -60,8 +66,11 @@ nav ul li a {
     nav ul {
         width: 100%;
         justify-content: center;
-        padding-left: 40px;
+        padding-left: 140px;
+        margin-top: 15px;
+  
     }
+    
 }
 
 /* Section Styling */
@@ -341,6 +350,7 @@ footer {
     font-weight: bold;
     padding: 20px;
     padding-left: 50px;
+    width: 100%;
 }
 
 .para {
