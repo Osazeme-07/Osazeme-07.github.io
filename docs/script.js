@@ -38,14 +38,19 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         errorEmail.textContent = 'Invalid Email address';
     }
 
+    // Validate Disclaimer Checkbox
     if (!disclaimer.checked) {
         isValid = false;
         errordisclaimer.textContent = 'You must agree to the policies in the disclaimer';
     }
     
-    
+    // If the form is valid, proceed with submission and clear the form
     if (isValid) {
         alert('Form submitted successfully!');
-        // Perform the actual form submission here
+        
+        // Here you would perform the actual form submission, e.g., using fetch or XMLHttpRequest
+
+        // Clear the form fields
+        document.getElementById('contact-form').reset();
     }
 });
