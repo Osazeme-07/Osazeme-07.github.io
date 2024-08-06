@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 // Handling form submission
 app.post('/send-email', (req, res) => {
-    const { name, email, message } = req.body;
+    const { 'first-name': firstName, 'last-name': lastName, email, message } = req.body;
 
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
@@ -31,8 +31,8 @@ app.post('/send-email', (req, res) => {
     const mailOptions = {
         from: email,
         to: process.env.RECEIVING_EMAIL,
-        subject: `New contact form submission from ${name}`,
-        text: `You have received a new message from ${name} (${email}):\n\n${message}`
+        subject: `New contact form submission from ${firstName} ${lastName}`,
+        text: `You have received a new message from ${firstName} ${lastName} (${email}):\n\n${message}`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -42,9 +42,4 @@ app.post('/send-email', (req, res) => {
         }
         res.status(200).send('Email sent successfully!');
     });
-});
-
-// Listen on the assigned port
-app.listen(port, '0.0.0.0', () => {
-    console.log(`Server is running on port ${port}`);
 });
