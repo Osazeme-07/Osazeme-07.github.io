@@ -3,11 +3,11 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
     let isValid = true;
     
-    const firstName = document.getElementById('first-name');
-    const lastName = document.getElementById('last-name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
-    const disclaimer = document.getElementById('privacy-policy');
+    const firstName = document.getElementById('first-name').value.trim();
+    const lastName = document.getElementById('last-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const disclaimer = document.getElementById('privacy-policy').checked;
 
     const errorFirstName = document.getElementById('error-first-name');
     const errorLastName = document.getElementById('error-last-name');
@@ -23,26 +23,26 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     errorDisclaimer.textContent = '';
     
     // Validate First Name
-    if (firstName.value.trim() === '') {
+    if (firstName === '') {
         isValid = false;
         errorFirstName.textContent = 'First Name is required';
     }
     
     // Validate Last Name
-    if (lastName.value.trim() === '') {
+    if (lastName === '') {
         isValid = false;
         errorLastName.textContent = 'Last Name is required';
     }
     
     // Validate Email
     const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/;
-    if (!email.value.match(emailPattern)) {
+    if (!email.match(emailPattern)) {
         isValid = false;
         errorEmail.textContent = 'Invalid Email address';
     }
 
     // Validate Disclaimer Checkbox
-    if (!disclaimer.checked) {
+    if (!disclaimer) {
         isValid = false;
         errorDisclaimer.textContent = 'You must agree to the policies in the disclaimer';
     }
@@ -50,10 +50,19 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     // If the form is valid, proceed with submission
     if (isValid) {
         try {
-            const formData = new FormData(document.getElementById('contact-form'));
+            // Create URL-encoded data
+            const data = new URLSearchParams();
+            data.append('first-name', firstName);
+            data.append('last-name', lastName);
+            data.append('email', email);
+            data.append('message', message);
+
             const response = await fetch('/send-email', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: data.toString()
             });
 
             if (response.ok) {
