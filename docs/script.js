@@ -1,5 +1,7 @@
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.getElementById('contact-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+
     
     let isValid = true;
     
@@ -53,4 +55,31 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         // Clear the form fields
         document.getElementById('contact-form').reset();
     }
+
+const formData = new FormData(this);
+const data = Object.fromEntries(formData.entries());
+
+try {
+    const response = await fetch('/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        // Display an error message to the user
+        const errorMessage = await response.text();
+        alert(`Error: ${errorMessage}`);
+    } else {
+        // Display a success message to the user
+        const successMessage = await response.text();
+        alert(successMessage);
+    }
+} catch (error) {
+    // Handle network errors
+    console.error('Network error:', error);
+    alert('There was a problem submitting the form. Please try again later.');
+}
 });
