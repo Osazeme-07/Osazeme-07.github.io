@@ -1,25 +1,26 @@
 document.getElementById('contact-form').addEventListener('submit', async function(event) {
     event.preventDefault(); // Prevent default form submission
 
-
-    
     let isValid = true;
     
     const firstName = document.getElementById('first-name');
     const lastName = document.getElementById('last-name');
     const email = document.getElementById('email');
+    const message = document.getElementById('message');
     const disclaimer = document.getElementById('privacy-policy');
 
     const errorFirstName = document.getElementById('error-first-name');
     const errorLastName = document.getElementById('error-last-name');
     const errorEmail = document.getElementById('error-email');
-    const errordisclaimer = document.getElementById('error-privacy-policy');
+    const errorMessage = document.getElementById('error-message');
+    const errorDisclaimer = document.getElementById('error-privacy-policy');
     
     // Clear previous error messages
     errorFirstName.textContent = '';
     errorLastName.textContent = '';
     errorEmail.textContent = '';
-    errordisclaimer.textContent= '';
+    errorMessage.textContent = '';
+    errorDisclaimer.textContent = '';
     
     // Validate First Name
     if (firstName.value.trim() === '') {
@@ -43,43 +44,28 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     // Validate Disclaimer Checkbox
     if (!disclaimer.checked) {
         isValid = false;
-        errordisclaimer.textContent = 'You must agree to the policies in the disclaimer';
+        errorDisclaimer.textContent = 'You must agree to the policies in the disclaimer';
     }
     
-    // If the form is valid, proceed with submission and clear the form
+    // If the form is valid, proceed with submission
     if (isValid) {
-        alert('Form submitted successfully!');
-        
-        // Here you would perform the actual form submission, e.g., using fetch or XMLHttpRequest
+        try {
+            const formData = new FormData(document.getElementById('contact-form'));
+            const response = await fetch('/send-email', {
+                method: 'POST',
+                body: formData
+            });
 
-        // Clear the form fields
-        document.getElementById('contact-form').reset();
+            if (response.ok) {
+                alert('Form submitted successfully!');
+                document.getElementById('contact-form').reset();
+            } else {
+                const errorText = await response.text();
+                alert(`Error: ${errorText}`);
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert('An error occurred while submitting the form.');
+        }
     }
-
-const formData = new FormData(this);
-const data = Object.fromEntries(formData.entries());
-
-try {
-    const response = await fetch('/send-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-        // Display an error message to the user
-        const errorMessage = await response.text();
-        alert(`Error: ${errorMessage}`);
-    } else {
-        // Display a success message to the user
-        const successMessage = await response.text();
-        alert(successMessage);
-    }
-} catch (error) {
-    // Handle network errors
-    console.error('Network error:', error);
-    alert('There was a problem submitting the form. Please try again later.');
-}
 });
