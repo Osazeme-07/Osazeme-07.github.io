@@ -57,7 +57,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
             data.append('email', email);
             data.append('message', message);
 
-            const response = await fetch({
+            const response = await fetch('https://secure-plains-83795-fc8873439e5b.herokuapp.com/',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
