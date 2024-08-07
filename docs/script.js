@@ -57,7 +57,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
             data.append('email', email);
             data.append('message', message);
 
-            const response = await fetch('/send-email', {
+            const response = await fetch({
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

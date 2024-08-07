@@ -1,6 +1,7 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
 require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,21 +16,24 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/docs/index.html');
 });
 
+app.use(cors());
+
 // Handling form submission
 app.post('/send-email', (req, res) => {
     const { 'first-name': firstName, 'last-name': lastName, email, message } = req.body;
 
     const transporter = nodemailer.createTransport({
-        service: 'Gmail',
+        host: 'in-v3.mailjet.com',
+        port: 587,
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
+            user: process.env.MAILJET_API_KEY,
+            pass: process.env.MAILJET_API_SECRET
         }
     });
 
     const mailOptions = {
-        from: email,
-        to: process.env.RECEIVING_EMAIL,
+        from: "osazemeogbeide1@gmail.com",
+        to: 'theglobalresearchhubuk@gmail.com',
         subject: `New contact form submission from ${firstName} ${lastName}`,
         text: `You have received a new message from ${firstName} ${lastName} (${email}):\n\n${message}`
     };
